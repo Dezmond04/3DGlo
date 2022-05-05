@@ -1,5 +1,4 @@
- import oneModule from "./modules/one" ;
- import twoModule from "./modules/two";
+"use strick";
+import timer from "./modules/timer";
 
- oneModule();
- twoModule();
+timer("9 may 2022");
