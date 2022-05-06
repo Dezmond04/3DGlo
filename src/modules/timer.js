@@ -16,26 +16,26 @@ const timer = (deadline) => {
 
   const updateClock = () => {
     let getTime = getTimeRemaining();
-    if (getTime.hours < 10) {
-      timerHours.textContent = "0" + getTime.hours;
-    } else {
-      timerHours.textContent = getTime.hours;
-    }
-
-    if (getTime.minutes < 10) {
-      timerMinutes.textContent = "0" + getTime.minutes;
-    } else {
-      timerMinutes.textContent = getTime.minutes;
-    }
-
-    if (getTime.seconds < 10) {
-      timerSeconds.textContent = "0" + getTime.seconds;
-    } else {
-      timerSeconds.textContent = getTime.seconds;
-    }
     if (getTime.timeRemaining > 0) {
+      if (getTime.hours < 10) {
+        timerHours.textContent = "0" + getTime.hours;
+      } else {
+        timerHours.textContent = getTime.hours;
+      }
+
+      if (getTime.minutes < 10) {
+        timerMinutes.textContent = "0" + getTime.minutes;
+      } else {
+        timerMinutes.textContent = getTime.minutes;
+      }
+
+      if (getTime.seconds < 10) {
+        timerSeconds.textContent = "0" + getTime.seconds;
+      } else {
+        timerSeconds.textContent = getTime.seconds;
+      }
+
       // setTimeout(updateClock, 1000);
-      setInterval(updateClock, 1000);
     } else if (getTime.timeRemaining <= 0) {
       timerHours.textContent = "00";
       timerMinutes.textContent = "00";
@@ -43,7 +43,7 @@ const timer = (deadline) => {
     }
   };
 
-  updateClock();
+  setInterval(updateClock, 1000);
 };
 
 export default timer;
