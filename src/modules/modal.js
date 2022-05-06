@@ -26,13 +26,14 @@ const modal = () => {
     let count = 0;
     const move = () => {
       if (screen.width > 768) {
-        popupContent.style.marginTop = count + "px";
+        popupContent.style.marginTop = count + "%";
         count -= 5;
         letIdInterval = requestAnimationFrame(move);
-        if (count > -51) {
-          popupContent.style.marginTop = count + "px";
+        if (count > -100) {
+          popupContent.style.marginTop = count + "%";
         } else {
           cancelAnimationFrame(letIdInterval);
+          modal.style.display = "none";
           popupContent.style.marginTop = "";
         }
       }
@@ -48,7 +49,6 @@ const modal = () => {
     });
   });
   closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
     modalAnimateClose();
   });
 };
