@@ -1,3 +1,5 @@
+import { animate } from "./helpers";
+
 const modal = () => {
   const modal = document.querySelector(".popup");
   const buttons = document.querySelectorAll(".popup-btn");
@@ -5,40 +7,19 @@ const modal = () => {
   let letIdInterval;
 
   const modalAnimateOpen = () => {
-    let count = -100;
-    const move = () => {
-      if (screen.width > 768) {
-        popupContent.style.marginTop = count + "%";
-        count += 5;
-        letIdInterval = requestAnimationFrame(move);
-        if (count < 0) {
-          popupContent.style.marginTop = count + "%";
-        } else {
-          cancelAnimationFrame(letIdInterval);
-          popupContent.style.marginTop = "";
-        }
-      }
-    };
-    move();
+    animate({
+      duration: 200,
+      timing(timeFraction) {
+        return timeFraction;
+      },
+      draw(progress) {
+        popupContent.style.opacity = progress;
+        popupContent.style.transform = "scale(" + progress + ")";
+      },
+    });
   };
   const modalAnimateClose = () => {
-    let count = 0;
-    const move = () => {
-      if (screen.width > 768) {
-        popupContent.style.marginTop = count + "%";
-        count -= 5;
-        letIdInterval = requestAnimationFrame(move);
-        if (count > -100) {
-          popupContent.style.marginTop = count + "%";
-        } else {
-          cancelAnimationFrame(letIdInterval);
-          modal.style.display = "none";
-          popupContent.style.marginTop = "";
-        }
-      }
-    };
-
-    move();
+    modal.style.display = "none";
   };
 
   buttons.forEach((btn) => {
