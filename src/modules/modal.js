@@ -1,7 +1,6 @@
 const modal = () => {
   const modal = document.querySelector(".popup");
   const buttons = document.querySelectorAll(".popup-btn");
-  const closeBtn = modal.querySelector(".popup-close");
   const popupContent = modal.querySelector(".popup-content");
   let letIdInterval;
 
@@ -48,9 +47,6 @@ const modal = () => {
       modalAnimateOpen();
     });
   });
-  // closeBtn.addEventListener("click", () => {
-  //   modalAnimateClose();
-  // });
 
   modal.addEventListener("click", (e) => {
     if (

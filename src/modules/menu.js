@@ -8,7 +8,6 @@ const menu = () => {
     menu.classList.toggle("active-menu");
   };
   document.addEventListener("click", (e) => {
-    console.log(e.target.closest("menu"));
     if (e.target.closest(".menu") || e.target.classList.contains("close-btn")) {
       handlMenu();
     } else if (
