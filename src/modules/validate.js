@@ -22,7 +22,7 @@ const validate = () => {
       }
       if (inputId.match(/form[0-9]-email/) !== null) {
         input.addEventListener("input", () => {
-          input.value = input.value.replace(/[\w\@\~\-\.\!\~\*]/g, "");
+          input.value = input.value.replace(/[^\w\@\~\-\.\!\~\*]/g, "");
         });
       }
       if (inputId.match(/form[0-9]-phone/) !== null) {

@@ -48,8 +48,17 @@ const modal = () => {
       modalAnimateOpen();
     });
   });
-  closeBtn.addEventListener("click", () => {
-    modalAnimateClose();
+  // closeBtn.addEventListener("click", () => {
+  //   modalAnimateClose();
+  // });
+
+  modal.addEventListener("click", (e) => {
+    if (
+      !e.target.closest(".popup-content") ||
+      e.target.classList.contains("popup-close")
+    ) {
+      modalAnimateClose();
+    }
   });
 };
 

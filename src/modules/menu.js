@@ -7,12 +7,26 @@ const menu = () => {
   const handlMenu = () => {
     menu.classList.toggle("active-menu");
   };
-
-  menuBtn.addEventListener("click", handlMenu);
-  closeBtn.addEventListener("click", handlMenu);
-  menuItems.forEach((menuItem) =>
-    menuItem.addEventListener("click", handlMenu)
-  );
+  document.addEventListener("click", (e) => {
+    if (
+      e.target.closest(".menu") ||
+      e.target.classList.contains("close-btn") ||
+      !e.target.closest("menu")
+    ) {
+      handlMenu();
+    } else {
+      menuItems.forEach((menuItem) => {
+        if (e.target === menuItem) {
+          handlMenu();
+        }
+      });
+    }
+  });
+  // menuBtn.addEventListener("click", handlMenu);
+  // closeBtn.addEventListener("click", handlMenu);
+  // menuItems.forEach((menuItem) =>
+  //   menuItem.addEventListener("click", handlMenu)
+  // );
 };
 
 export default menu;
