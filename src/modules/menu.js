@@ -8,10 +8,12 @@ const menu = () => {
     menu.classList.toggle("active-menu");
   };
   document.addEventListener("click", (e) => {
-    if (
-      e.target.closest(".menu") ||
-      e.target.classList.contains("close-btn") ||
-      !e.target.closest("menu")
+    console.log(e.target.closest("menu"));
+    if (e.target.closest(".menu") || e.target.classList.contains("close-btn")) {
+      handlMenu();
+    } else if (
+      e.target.closest("menu") === null &&
+      menu.classList.contains("active-menu")
     ) {
       handlMenu();
     } else {
