@@ -6,11 +6,13 @@ import validate from "./modules/validate";
 import tabs from "./modules/tabs";
 import slider from "./modules/slider";
 import calc from "./modules/calc";
+import getSend from "./modules/send";
 
-timer("10 may 2022");
+timer("12 may 2022");
 menu();
 modal();
 validate();
 tabs();
 slider();
 calc();
+getSend();
