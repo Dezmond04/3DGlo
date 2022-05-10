@@ -7,6 +7,7 @@ import tabs from "./modules/tabs";
 import slider from "./modules/slider";
 import calc from "./modules/calc";
 import getSend from "./modules/send";
+import sendForm from "./modules/sendForm";
 
 timer("12 may 2022");
 menu();
@@ -16,3 +17,6 @@ tabs();
 slider();
 calc();
 getSend();
+sendForm({ formId: "form1" });
+sendForm({ formId: "form2" });
+sendForm({ formId: "form3" });
