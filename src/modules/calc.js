@@ -23,8 +23,9 @@ const calc = (price = 100) => {
       calcDayValue = 1.5;
     }
     if (calcTypeValue && calcSquareValue) {
-      totalValue =
-        price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
+      totalValue = Math.round(
+        price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue
+      );
     } else {
       totalValue = 0;
     }
