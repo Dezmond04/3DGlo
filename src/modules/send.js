@@ -19,7 +19,6 @@ const getSend = () => {
       },
     })
       .then((response) => response.json())
-      .then((json) => console.log(json))
       .catch("Ошибка");
   };
   getData();

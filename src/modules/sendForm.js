@@ -1,6 +1,6 @@
 import { validate } from "schema-utils";
 
-const sendForm = ({ formId }) => {
+const sendForm = ({ formId, someElem = [] }) => {
   const form = document.querySelector(`#${formId}`);
   const statusBlock = document.createElement("div");
   const loadText = "Загрузка";
@@ -19,12 +19,20 @@ const sendForm = ({ formId }) => {
   const validate = (list) => {
     let success = true;
     list.forEach((input) => {
+      input.value = input.value.trim();
       if (
         input.id.match(/form[0-9]-name/) ||
-        input.id.match(/form[0-9]-email/) ||
-        input.id.match(/form[0-9]-phone/)
+        input.id.match(/form[0-9]-email/)
       ) {
-        if (input.value == "") {
+        if (input.value == "" || input.value.length < 2) {
+          success = false;
+        }
+      } else if (input.id.match(/form[0-9]-phone/)) {
+        if (
+          input.value == "" ||
+          input.value.length < 6 ||
+          input.value.length > 16
+        ) {
           success = false;
         }
       }
@@ -43,7 +51,18 @@ const sendForm = ({ formId }) => {
     form.append(statusBlock);
 
     formData.forEach((val, key) => {
-      formBody[key] = val;
+      if (val !== "") {
+        formBody[key] = val;
+      }
+    });
+
+    someElem.forEach((elem) => {
+      const element = document.getElementById(elem.id);
+      if (elem.type === "block" && element.textContent !== "0") {
+        formBody[elem.id] = element.textContent;
+      } else if (elem.type === "input" && element.value !== 0) {
+        formBody[elem.id] = element.value;
+      }
     });
 
     if (validate(formElements)) {
@@ -62,6 +81,9 @@ const sendForm = ({ formId }) => {
       alert("Заполните все поля");
       statusBlock.textContent = "";
     }
+    setTimeout(() => {
+      statusBlock.textContent = "";
+    }, 4000);
   };
 
   try {

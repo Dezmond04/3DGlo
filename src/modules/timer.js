@@ -16,6 +16,7 @@ const timer = (deadline) => {
 
   const updateClock = () => {
     let getTime = getTimeRemaining();
+
     if (getTime.timeRemaining > 0) {
       if (getTime.hours < 10) {
         timerHours.textContent = "0" + getTime.hours;
@@ -34,16 +35,16 @@ const timer = (deadline) => {
       } else {
         timerSeconds.textContent = getTime.seconds;
       }
-
-      // setTimeout(updateClock, 1000);
     } else if (getTime.timeRemaining <= 0) {
       timerHours.textContent = "00";
       timerMinutes.textContent = "00";
       timerSeconds.textContent = "00";
+      clearInterval(intervalID);
     }
   };
+  let intervalID = setInterval(updateClock, 1000);
 
-  setInterval(updateClock, 1000);
+  // setInterval(updateClock, 1000);
 };
 
 export default timer;
